@@ -1,0 +1,505 @@
+/* style.css */
+:root {
+    --bg-deep: #030508;
+    --surface: rgba(13, 17, 26, 0.7);
+    --surface-hover: rgba(20, 26, 38, 0.85);
+    --border: rgba(44, 103, 190, 0.25);
+    --border-glow: rgba(255, 215, 0, 0.4);
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+    --accent-red: #ff334b;
+    --text-main: #f3f6fb;
+    --text-muted: #8b9ab3;
+    --radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 30px 20px;
+    zoom: 0.88;
+    background-image: 
+        radial-gradient(circle at 10% 15%, rgba(44, 103, 190, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(255, 215, 0, 0.05) 0%, transparent 45%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.command-wrapper {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: var(--transition);
+}
+.glass-panel:hover {
+    border-color: var(--border-glow);
+}
+
+/* Hero Header */
+.hero-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, rgba(13, 17, 26, 0.85) 0%, rgba(5, 8, 15, 0.95) 100%);
+    border: 1px solid rgba(44, 103, 190, 0.35);
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+}
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--gold);
+    box-shadow: 0 0 15px var(--gold);
+}
+.hero-logo {
+    max-height: 65px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+.hero-titles {
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 20px;
+}
+.hero-titles h1 {
+    font-size: 1.8em;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+}
+.hero-meta {
+    font-size: 1em;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* Live Announcement Ticker */
+.ticker-bar {
+    background: rgba(8, 12, 20, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ticker-badge {
+    background: #003366;
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 0.75em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-right: 18px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.ticker-viewport {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.ticker-track {
+    display: inline-block;
+    animation: marquee 38s linear infinite;
+}
+
+.ticker-item {
+    display: inline-block;
+    margin-right: 50px;
+    font-size: 0.9em;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* Unified Marquee Animation & Tailwind Hook */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+}
+
+/* Pause on hover so users can easily read announcements */
+.animate-marquee:hover,
+.ticker-bar:hover .ticker-track {
+    animation-play-state: paused;
+}
+
+/* Bento Grid Layout */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.bento-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+.bento-box:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+/* Featured Event Callout (Love Blood Ink Tattoo) */
+.featured-event-banner {
+    background: linear-gradient(135deg, rgba(26, 13, 15, 0.9) 0%, rgba(13, 17, 26, 0.95) 100%);
+    border: 2px solid var(--accent-red);
+    border-radius: var(--radius);
+    padding: 24px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(255, 51, 75, 0.15);
+}
+
+/* Interactive Buttons */
+.btn-action {
+    background: var(--gold);
+    color: #030508;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 0.9em;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+}
+.btn-action:hover {
+    opacity: 0.95;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+.btn-action.red {
+    background: var(--accent-red);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 51, 75, 0.3);
+}
+.btn-action.red:hover {
+    box-shadow: 0 6px 20px rgba(255, 51, 75, 0.5);
+}
+
+/* Collapsible Accordions (Galleries & Sponsors) */
+.accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.accordion-btn {
+    width: 100%;
+    background: rgba(18, 24, 38, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+    text-align: left;
+    overflow: hidden;
+    transition: var(--transition);
+}
+.accordion-btn:hover {
+    border-color: var(--gold);
+}
+.accordion-tag {
+    background: #003366;
+    color: var(--gold);
+    font-weight: 800;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+    font-size: 0.85em;
+    letter-spacing: 0.06em;
+    min-width: 130px;
+}
+.accordion-label {
+    padding: 14px 22px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.accordion-content {
+    display: none;
+    background: rgba(5, 8, 15, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 6px;
+}
+
+/* Photo Grid Collages */
+.photo-collage {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+.collage-thumb {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+.collage-thumb:hover {
+    transform: scale(1.03);
+    border-color: var(--gold);
+}
+
+/* Songbook Library Search Bar */
+.songbook-input {
+    width: 100%;
+    padding: 14px 20px;
+    background: rgba(3, 5, 8, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: white;
+    font-size: 1em;
+    outline: none;
+    transition: var(--transition);
+}
+.songbook-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+}
+.song-results {
+    max-height: 240px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+.song-row {
+    background: rgba(18, 24, 38, 0.4);
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(44, 103, 190, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+/* Impact Telemetry Metrics */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+.metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+.metric-value {
+    font-size: 2em;
+    font-weight: 800;
+    color: var(--gold);
+    margin-top: 6px;
+    display: block;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+.metric-title {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+
+/* Interactive Business Card Carousel */
+.sponsor-carousel {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0.5rem; /* Vertical padding gives room for scaling */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.sponsor-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Ensure individual business cards don't shrink and stay in a single line */
+.sponsor-carousel > * {
+    flex: 0 0 auto;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+/* Expand effect on hover */
+.sponsor-carousel > *:hover {
+    transform: scale(1.05); /* Expands the card nicely */
+    z-index: 10;           /* Pops the expanded card above neighbors */
+    border-color: var(--gold);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Full-Bleed Breakout for Partner Directory */
+.full-bleed-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: rgba(5, 8, 15, 0.4); /* Optional subtle background tint */
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Full-Bleed Partner Directory Carousel */
+.partner-directory-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+}
+
+.partner-scroll-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 1.5rem 2rem; /* Gives vertical breathing room so card scaling isn't clipped */
+    width: 100%;
+}
+
+.partner-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Individual card styling with smooth scale and pop */
+.partner-card {
+    flex: 0 0 280px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    will-change: transform;
+}
+
+.partner-card:hover {
+    transform: translateY(-4px) scale(1.05); /* Lifts and expands cleanly */
+    z-index: 50;
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.25);
+}
+
+/* Base styling for your year buttons */
+.btn-year {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.btn-year:hover {
+    border-color: #FFD700;
+    color: #FFD700;
+}
+
+/* Persistent Active State (This keeps it highlighted in gold) */
+.btn-year.active {
+    background-color: #FFD700 !important;
+    color: #0f172a !important;
+    border-color: #FFD700 !important;
+    font-weight: 700;
+}
+
+/* Persistent Active State for Year Selector */
+button.btn-year.active {
+    background-color: #FFD700 !important;
+    color: #030712 !important;
+    border-color: #FFD700 !important;
+    font-weight: 700 !important;
+}
+
+/* Cycle Card Collapse & Expand Functionality */
+.cycle-card.collapsed .instructor-box,
+.cycle-card.collapsed table {
+    display: none !important;
+}
+
+/* Optional: Smooth transition for the toggle arrow indicator */
+.cycle-card.collapsed .card-toggle-arrow {
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease;
+}
+
+.card-toggle-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
