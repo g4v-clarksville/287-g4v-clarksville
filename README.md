@@ -1,6 +1,6 @@
-# 287-g4v-clarksville
-This site provides veteran status of the program as well as immense library of songs available for download
 # Guitars for Vets — Clarksville Chapter #287
+
+> Official digital portal, student progress tracking, and searchable song/chord library for G4V Chapter #287 in Clarksville, TN.
 
 Welcome to the official repository and web application codebase for **Guitars for Vets (G4V) Chapter #287** located in Clarksville, Tennessee. This project houses our chapter's digital web interface, interactive song and chord libraries, and administrative tracking tools designed to support our local veteran community.
 
@@ -18,7 +18,7 @@ Chapter #287 is powered by a dedicated team of volunteers and local leaders:
 
 * **Chapter Coordinator:** Dean Thomas — *(931) 338-7008 | tn.clarksville@guitarsforvets.org*
 * **Media, PR & Facilities:** William (Bill) Hensley — *(334) 379-9427 | g4vchapter287@gmail.com*
-* **Instructional Roster:** Charles Lampey, Joseph Gentry, Tom Drzewiecki
+* **Instructional Roster:** Charles Lampey, Joseph Gentry, Tom Drzewiecki and Guitar Tech Guru Joey Davis
 
 ---
 
